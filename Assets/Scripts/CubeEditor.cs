@@ -2,13 +2,22 @@
 using UnityEngine.SocialPlatforms;
 
 [ExecuteInEditMode]
-public class EditorSnap : MonoBehaviour
+[SelectionBase]
+public class CubeEditor : MonoBehaviour
 {
 
     [SerializeField] [Range(1f, 20f)] private float _gridSize = 10f;
     [SerializeField] private bool _allowVertical = false;
 
+    private TextMesh _textMesh;
+
     private void Update()
+    {
+        ProcessPosition();
+        DisplayPosition();
+    }
+
+    private void ProcessPosition()
     {
         Vector3 snapPosition;
         snapPosition.x = Mathf.RoundToInt(transform.position.x / _gridSize) * _gridSize;
@@ -22,6 +31,15 @@ public class EditorSnap : MonoBehaviour
         }
         snapPosition.z = Mathf.RoundToInt(transform.position.z / _gridSize) * _gridSize;
         transform.position = snapPosition;
+    }
+
+    private void DisplayPosition()
+    {
+        if (_textMesh == null)
+        {
+            _textMesh = gameObject.GetComponentInChildren<TextMesh>();
+        }
+        _textMesh.text = $"{transform.position.x/_gridSize},{transform.position.z/_gridSize}";
     }
 
 }
