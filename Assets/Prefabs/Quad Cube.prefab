@@ -456,7 +456,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6846466028584124797}
-  m_Text: 3,2
+  m_Text: 0,0
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 0
@@ -574,7 +574,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2354421730085867610}
   - component: {fileID: 1994394195}
-  - component: {fileID: 8137616555807312797}
+  - component: {fileID: 5559400953377896343}
   m_Layer: 0
   m_Name: Quad Cube
   m_TagString: Untagged
@@ -616,7 +616,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gridSize: 10
   _allowVertical: 0
---- !u!114 &8137616555807312797
+--- !u!114 &5559400953377896343
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

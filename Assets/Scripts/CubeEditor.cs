@@ -43,7 +43,7 @@ public class CubeEditor : MonoBehaviour
         }
         var labelText = $"{transform.position.x / _gridSize},{transform.position.z / _gridSize}";
         _textMesh.text = labelText;
-        gameObject.name = $"Cube ({labelText})";
+        gameObject.name = $"({labelText})";
     }
 
 }

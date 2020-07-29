@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [DisallowMultipleComponent]
-public class Cube : MonoBehaviour
+public class Waypoint : MonoBehaviour
 {
 
 }
