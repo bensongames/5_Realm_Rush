@@ -456,7 +456,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6846466028584124797}
-  m_Text: xx,xx
+  m_Text: 3,2
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 0
@@ -573,7 +573,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2354421730085867610}
-  - component: {fileID: 2436126565026714511}
+  - component: {fileID: 1994394195}
+  - component: {fileID: 8137616555807312797}
   m_Layer: 0
   m_Name: Quad Cube
   m_TagString: Untagged
@@ -590,7 +591,7 @@ Transform:
   m_GameObject: {fileID: 8504250377898076980}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 9.9, y: 9.9, z: 9.9}
   m_Children:
   - {fileID: 4624732760280115694}
   - {fileID: 4923162684537662923}
@@ -601,7 +602,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2436126565026714511
+--- !u!114 &1994394195
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -615,6 +616,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gridSize: 10
   _allowVertical: 0
+--- !u!114 &8137616555807312797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8504250377898076980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a157f35b392c5d5409bc00f46782c278, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8993593110522083938
 GameObject:
   m_ObjectHideFlags: 0

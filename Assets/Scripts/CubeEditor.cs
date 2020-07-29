@@ -3,6 +3,8 @@ using UnityEngine.SocialPlatforms;
 
 [ExecuteInEditMode]
 [SelectionBase]
+[DisallowMultipleComponent]
+[RequireComponent(typeof(TextMesh))]
 public class CubeEditor : MonoBehaviour
 {
 
@@ -39,7 +41,9 @@ public class CubeEditor : MonoBehaviour
         {
             _textMesh = gameObject.GetComponentInChildren<TextMesh>();
         }
-        _textMesh.text = $"{transform.position.x/_gridSize},{transform.position.z/_gridSize}";
+        var labelText = $"{transform.position.x / _gridSize},{transform.position.z / _gridSize}";
+        _textMesh.text = labelText;
+        gameObject.name = $"Cube ({labelText})";
     }
 
 }
