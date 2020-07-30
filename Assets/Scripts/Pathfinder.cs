@@ -18,11 +18,13 @@ public class Pathfinder : MonoBehaviour
         Vector2Int.down,
         Vector2Int.left
     };
+    private Queue<Waypoint> _queue = new Queue<Waypoint>();
 
     private void Start()
     {
         InitialiseWaypoints();
         ExploreNeighbours();
+        FindPath();
     }
 
     private void InitialiseWaypoints()
@@ -75,4 +77,20 @@ public class Pathfinder : MonoBehaviour
             }
         }
     }
+
+    private void FindPath()
+    {
+        var endWaypointFound = false;
+        _queue.Enqueue(_startWaypoint);
+        while(!endWaypointFound && _queue.Count > 0)
+        {
+            var searchWaypoint = _queue.Dequeue();
+            if (searchWaypoint == _endWaypoint)
+            {
+                endWaypointFound = true;
+                Debug.LogError("Found End Waypoint");
+            }
+        }
+    }
+
 }
