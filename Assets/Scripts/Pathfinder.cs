@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using TMPro;
 using UnityEngine;
 
 [DisallowMultipleComponent]
@@ -19,25 +20,35 @@ public class Pathfinder : MonoBehaviour
         Vector2Int.left
     };
     private Queue<Waypoint> _queue = new Queue<Waypoint>();
+    private bool _isPathfinding = false;
 
     private void Start()
     {
-        InitialiseWaypoints();
-        ExploreNeighbours();
+        InitialiseWaypoints();        
         FindPath();
     }
 
     private void InitialiseWaypoints()
     {
+        IndicateStartWaypoint();
+        IndicateEndWaypoint();
+        LoadWaypoints();
+    }
+
+    private void IndicateStartWaypoint()
+    {
         if (_startWaypoint != null)
         {
             _startWaypoint.SetTopColor(Color.green);
         }
+    }
+
+    private void IndicateEndWaypoint()
+    {
         if (_endWaypoint != null)
         {
             _endWaypoint.SetTopColor(Color.red);
         }
-        LoadWaypoints();        
     }
 
     private void LoadWaypoints()
@@ -59,38 +70,52 @@ public class Pathfinder : MonoBehaviour
         }
     }
 
-    private void ExploreNeighbours()
-    {
-        foreach(var waypoint in _grid) { 
-            foreach (var direction in _directions)
-            {
-                var gridPosition = waypoint.Value.GetGridPosition();
-                var explorePosition = gridPosition + direction;
-                if (_grid.TryGetValue(explorePosition, out Waypoint exploreWaypoint))
-                {
-                    exploreWaypoint.SetTopColor(Color.blue);
-                }
-                else
-                {
-                    Debug.Log($"No cube at explore position {explorePosition}");
-                }
-            }
-        }
-    }
-
     private void FindPath()
     {
-        var endWaypointFound = false;
+        _isPathfinding = true;
         _queue.Enqueue(_startWaypoint);
-        while(!endWaypointFound && _queue.Count > 0)
+        while(_isPathfinding && _queue.Count > 0)
         {
             var searchWaypoint = _queue.Dequeue();
-            if (searchWaypoint == _endWaypoint)
+            HaltOnWaypointFound(searchWaypoint);
+            ExploreNeighbours(searchWaypoint);
+            searchWaypoint.IsExplored = true;
+        }
+    }
+
+    private void HaltOnWaypointFound(Waypoint searchWaypoint)
+    {
+        if (searchWaypoint == _endWaypoint)
+        {
+            IndicateEndWaypoint();
+            _isPathfinding = false;
+        }
+    }
+
+    private void ExploreNeighbours(Waypoint searchPosition)
+    {
+        if (!_isPathfinding) return;
+        foreach (var direction in _directions)
+        {
+            var gridPosition = searchPosition.GetGridPosition();
+            var explorePosition = gridPosition + direction;
+            if (_grid.TryGetValue(explorePosition, out Waypoint exploreWaypoint))
             {
-                endWaypointFound = true;
-                Debug.LogError("Found End Waypoint");
+                QueueSearchWaypoint(exploreWaypoint);
+            }
+            else
+            {
+                Debug.Log($"No cube at explore position {explorePosition}");
             }
         }
     }
 
+    private void QueueSearchWaypoint(Waypoint searchWaypoint)
+    {
+        if (!searchWaypoint.IsExplored)
+        {
+            searchWaypoint.SetTopColor(Color.blue);
+            _queue.Enqueue(searchWaypoint);
+        }
+    }
 }
