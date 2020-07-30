@@ -5,43 +5,36 @@ using UnityEngine.SocialPlatforms;
 [SelectionBase]
 [DisallowMultipleComponent]
 [RequireComponent(typeof(TextMesh))]
+[RequireComponent(typeof(Waypoint))]
 public class CubeEditor : MonoBehaviour
 {
 
-    [SerializeField] [Range(1f, 20f)] private float _gridSize = 10f;
-    [SerializeField] private bool _allowVertical = false;
-
     private TextMesh _textMesh;
+    private Waypoint _waypoint;
+
+    private void Awake()
+    {
+         _waypoint = gameObject.GetComponentInChildren<Waypoint>();
+        _textMesh = gameObject.GetComponentInChildren<TextMesh>();
+    }
 
     private void Update()
     {
-        ProcessPosition();
-        DisplayPosition();
+        SnapToGrid();
+        UpdateLabel();
     }
 
-    private void ProcessPosition()
+    private void SnapToGrid()
     {
-        Vector3 snapPosition;
-        snapPosition.x = Mathf.RoundToInt(transform.position.x / _gridSize) * _gridSize;
-        if (_allowVertical)
-        {
-            snapPosition.y = Mathf.RoundToInt(transform.position.y / _gridSize) * _gridSize;
-        }
-        else
-        {
-            snapPosition.y = 0f;
-        }
-        snapPosition.z = Mathf.RoundToInt(transform.position.z / _gridSize) * _gridSize;
-        transform.position = snapPosition;
+        var gridSize = _waypoint.GetGridSize();
+        var gridPosition = _waypoint.GetGridPosition();
+        transform.position = new Vector3(gridPosition.x * gridSize, 0f, gridPosition.y * gridSize);
     }
 
-    private void DisplayPosition()
+    private void UpdateLabel()
     {
-        if (_textMesh == null)
-        {
-            _textMesh = gameObject.GetComponentInChildren<TextMesh>();
-        }
-        var labelText = $"{transform.position.x / _gridSize},{transform.position.z / _gridSize}";
+        var gridPosition = _waypoint.GetGridPosition();
+        var labelText = $"{gridPosition.x},{gridPosition.y}";
         _textMesh.text = labelText;
         gameObject.name = $"({labelText})";
     }
