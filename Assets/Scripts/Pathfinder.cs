@@ -2,15 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class Pathfinder : MonoBehaviour
 {
 
-    private Dictionary<Vector2Int, Waypoint> _grid = new Dictionary<Vector2Int, Waypoint>();
+    [SerializeField] private Waypoint _startWaypoint;
+    [SerializeField] private Waypoint _endWaypoint;
 
+    private Dictionary<Vector2Int, Waypoint> _grid = new Dictionary<Vector2Int, Waypoint>();
 
     private void Start()
     {
-        LoadWaypoints();
+        InitialiseWaypoints();
+    }
+
+    private void InitialiseWaypoints()
+    {
+        if (_startWaypoint != null)
+        {
+            _startWaypoint.SetTopColor(Color.blue);
+        }
+        if (_endWaypoint != null)
+        {
+            _endWaypoint.SetTopColor(Color.red);
+        }
+        LoadWaypoints();        
     }
 
     private void LoadWaypoints()
