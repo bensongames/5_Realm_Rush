@@ -4,14 +4,24 @@
 public class Waypoint : MonoBehaviour
 {
 
-    public bool IsExplored;
+    [SerializeField] private Color _exploredColor;
 
-    private Vector2Int _gridPosition;
+    public bool IsExplored;
+    public Waypoint ExploredFrom;
+
     private const int _gridSize = 10;
 
     public int GetGridSize()
     {
         return _gridSize;
+    }
+
+    private void Update()
+    {
+        if (IsExplored)
+        {
+            SetTopColor(_exploredColor);
+        }
     }
 
     public Vector2Int GetGridPosition()

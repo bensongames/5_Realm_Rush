@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using TMPro;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [DisallowMultipleComponent]
@@ -21,6 +17,7 @@ public class Pathfinder : MonoBehaviour
     };
     private Queue<Waypoint> _queue = new Queue<Waypoint>();
     private bool _isPathfinding = false;
+    private Waypoint _searchWaypoint;
 
     private void Start()
     {
@@ -76,46 +73,43 @@ public class Pathfinder : MonoBehaviour
         _queue.Enqueue(_startWaypoint);
         while(_isPathfinding && _queue.Count > 0)
         {
-            var searchWaypoint = _queue.Dequeue();
-            HaltOnWaypointFound(searchWaypoint);
-            ExploreNeighbours(searchWaypoint);
-            searchWaypoint.IsExplored = true;
+            _searchWaypoint = _queue.Dequeue();
+            HaltOnWaypointFound();
+            ExploreNeighbours();
+            _searchWaypoint.IsExplored = true;
         }
     }
 
-    private void HaltOnWaypointFound(Waypoint searchWaypoint)
+    private void HaltOnWaypointFound()
     {
-        if (searchWaypoint == _endWaypoint)
+        if (_searchWaypoint == _endWaypoint)
         {
+            IndicateStartWaypoint();
             IndicateEndWaypoint();
             _isPathfinding = false;
         }
     }
 
-    private void ExploreNeighbours(Waypoint searchPosition)
+    private void ExploreNeighbours()
     {
         if (!_isPathfinding) return;
         foreach (var direction in _directions)
         {
-            var gridPosition = searchPosition.GetGridPosition();
+            var gridPosition = _searchWaypoint.GetGridPosition();
             var explorePosition = gridPosition + direction;
             if (_grid.TryGetValue(explorePosition, out Waypoint exploreWaypoint))
             {
-                QueueSearchWaypoint(exploreWaypoint);
-            }
-            else
-            {
-                Debug.Log($"No cube at explore position {explorePosition}");
+                QueueExploreWaypoint(exploreWaypoint);
             }
         }
     }
 
-    private void QueueSearchWaypoint(Waypoint searchWaypoint)
+    private void QueueExploreWaypoint(Waypoint exploreWaypoint)
     {
-        if (!searchWaypoint.IsExplored)
-        {
-            searchWaypoint.SetTopColor(Color.blue);
-            _queue.Enqueue(searchWaypoint);
+        if (!exploreWaypoint.IsExplored && !_queue.Contains(exploreWaypoint))
+        {            
+            exploreWaypoint.ExploredFrom = _searchWaypoint;
+            _queue.Enqueue(exploreWaypoint);
         }
     }
 }
