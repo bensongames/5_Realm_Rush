@@ -1,28 +1,26 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [DisallowMultipleComponent]
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private System.Collections.Generic.List<Waypoint> _path;
-
     private void Start()
     {
-        StartCoroutine(FollowPath());
+        var pathFinder = FindObjectOfType<Pathfinder>();
+        var path = pathFinder.GetPath();
+        StartCoroutine(FollowPath(path));
     }
 
-    private IEnumerator FollowPath()
+    private IEnumerator FollowPath(List<Waypoint> path)
     {
-        Debug.Log("Starting Patrol");
-        foreach (var waypoint in _path)
+        foreach (var waypoint in path)
         {
             if (waypoint != null)
             {
-                Debug.Log($"Moving to position {waypoint.name}");
                 transform.position = waypoint.transform.position;
             }
             yield return new WaitForSeconds(1f);
         }
-        Debug.Log("Ending Patrol");
     }
 }

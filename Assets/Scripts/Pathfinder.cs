@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [DisallowMultipleComponent]
@@ -18,18 +19,13 @@ public class Pathfinder : MonoBehaviour
     private Queue<Waypoint> _queue = new Queue<Waypoint>();
     private bool _isPathfinding = false;
     private Waypoint _searchWaypoint;
-
-    private void Start()
-    {
-        InitialiseWaypoints();        
-        FindPath();
-    }
+    private List<Waypoint> _path = new List<Waypoint>();
 
     private void InitialiseWaypoints()
     {
+        LoadWaypoints();
         IndicateStartWaypoint();
         IndicateEndWaypoint();
-        LoadWaypoints();
     }
 
     private void IndicateStartWaypoint()
@@ -67,7 +63,7 @@ public class Pathfinder : MonoBehaviour
         }
     }
 
-    private void FindPath()
+    private void BreadthFirstSearch()
     {
         _isPathfinding = true;
         _queue.Enqueue(_startWaypoint);
@@ -78,6 +74,20 @@ public class Pathfinder : MonoBehaviour
             ExploreNeighbours();
             _searchWaypoint.IsExplored = true;
         }
+    }
+
+
+    private void CreatePath()
+    {
+        _path.Add(_endWaypoint);
+        var exploredFrom = _endWaypoint.ExploredFrom;
+        while (exploredFrom != _startWaypoint)
+        {
+            _path.Add(exploredFrom);
+            exploredFrom = exploredFrom.ExploredFrom;
+        }
+        _path.Add(_startWaypoint);
+        _path.Reverse();
     }
 
     private void HaltOnWaypointFound()
@@ -111,5 +121,13 @@ public class Pathfinder : MonoBehaviour
             exploreWaypoint.ExploredFrom = _searchWaypoint;
             _queue.Enqueue(exploreWaypoint);
         }
+    }
+
+    public List<Waypoint> GetPath()
+    {
+        InitialiseWaypoints();
+        BreadthFirstSearch();
+        CreatePath();
+        return _path;
     }
 }
