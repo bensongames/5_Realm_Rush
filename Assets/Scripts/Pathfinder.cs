@@ -124,9 +124,17 @@ public class Pathfinder : MonoBehaviour
 
     public List<Waypoint> GetPath()
     {
+        if (_path.Count == 0)
+        {
+            CalculatePath();
+        }
+        return _path;
+    }
+
+    private void CalculatePath()
+    {
         InitialiseWaypoints();
         BreadthFirstSearch();
         CreatePath();
-        return _path;
     }
 }
