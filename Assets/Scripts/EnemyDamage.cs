@@ -2,7 +2,7 @@
 
 public class EnemyDamage : MonoBehaviour
 {
-    [Tooltip("Particle Effects")] [SerializeField] GameObject _explosionPrefab;
+    [SerializeField] GameObject _explosionPrefab;
     [SerializeField] private int _hitPoints = 10;
 
     private void Start()

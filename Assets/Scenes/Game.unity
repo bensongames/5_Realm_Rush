@@ -2466,8 +2466,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 768741539}
+  - component: {fileID: 768741540}
   m_Layer: 0
-  m_Name: Enemies
+  m_Name: Enemy Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2488,6 +2489,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &768741540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768741538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d3ff30f24e43fa4da33f2832ed0d9c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyPrefab: {fileID: 7658554496116466233, guid: 61da62c6e2e5ebf41b6606275a54ae11,
+    type: 3}
+  _spawnDelay: 1
 --- !u!1001 &770301394
 PrefabInstance:
   m_ObjectHideFlags: 0
