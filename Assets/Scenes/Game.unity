@@ -5503,50 +5503,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3154891103429072727, guid: 61da62c6e2e5ebf41b6606275a54ae11,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4710101457821950139, guid: 61da62c6e2e5ebf41b6606275a54ae11,
-        type: 3}
-      propertyPath: _path.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4710101457821950139, guid: 61da62c6e2e5ebf41b6606275a54ae11,
-        type: 3}
-      propertyPath: _path.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4710101457821950139, guid: 61da62c6e2e5ebf41b6606275a54ae11,
-        type: 3}
-      propertyPath: _path.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4710101457821950139, guid: 61da62c6e2e5ebf41b6606275a54ae11,
-        type: 3}
-      propertyPath: _path.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4710101457821950139, guid: 61da62c6e2e5ebf41b6606275a54ae11,
-        type: 3}
-      propertyPath: _path.Array.data[4]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4710101457821950139, guid: 61da62c6e2e5ebf41b6606275a54ae11,
-        type: 3}
-      propertyPath: _path.Array.data[5]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7658554496116466233, guid: 61da62c6e2e5ebf41b6606275a54ae11,
         type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 7658554496116466233, guid: 61da62c6e2e5ebf41b6606275a54ae11,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7658554496116466234, guid: 61da62c6e2e5ebf41b6606275a54ae11,
         type: 3}
