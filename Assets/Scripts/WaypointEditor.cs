@@ -6,7 +6,7 @@ using UnityEngine.SocialPlatforms;
 [DisallowMultipleComponent]
 [RequireComponent(typeof(TextMesh))]
 [RequireComponent(typeof(Waypoint))]
-public class CubeEditor : MonoBehaviour
+public class WaypointEditor : MonoBehaviour
 {
 
     private TextMesh _textMesh;
@@ -35,7 +35,7 @@ public class CubeEditor : MonoBehaviour
     {
         var gridPosition = _waypoint.GetGridPosition();
         var labelText = $"{gridPosition.x},{gridPosition.y}";
-        _textMesh.text = labelText;
+        if (_textMesh != null) _textMesh.text = labelText;
         gameObject.name = $"({labelText})";
     }
 
