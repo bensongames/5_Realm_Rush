@@ -5,14 +5,18 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] ParticleSystem _playerBaseReachedPrefab;
-    [SerializeField] private float _movementSpeed = 2f;
+
+    public float MovementSpeed = 2f;
+    
+    private ParticleFactory _particleFactory;
+
 
     private void Start()
     {
         var pathFinder = FindObjectOfType<Pathfinder>();
         var path = pathFinder.GetPath();
         StartCoroutine(FollowPath(path));
+        _particleFactory = FindObjectOfType<ParticleFactory>();
     }
 
     private IEnumerator FollowPath(List<Waypoint> path)
@@ -23,16 +27,16 @@ public class EnemyMovement : MonoBehaviour
             {
                 transform.position = waypoint.transform.position;
             }
-            yield return new WaitForSeconds(_movementSpeed);
+            yield return new WaitForSeconds(MovementSpeed);
         }
-        ReachedPlayerBase();
+        AttackPlayerBase();
     }
 
-    private void ReachedPlayerBase()
+    [SerializeField] ParticleSystem _playerBaseReachedPrefab;
+
+    private void AttackPlayerBase()
     {
-        var playerBaseReachedParticles = Instantiate(_playerBaseReachedPrefab, transform.position, Quaternion.identity);
-        var destroyDelay = playerBaseReachedParticles.main.duration;
         Destroy(gameObject);
-        Destroy(playerBaseReachedParticles.gameObject, destroyDelay);
+        _particleFactory.CreateAttackPlayerBaseParticles(transform.position);
     }
 }

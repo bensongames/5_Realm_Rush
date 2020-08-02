@@ -4818,6 +4818,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b19b873ba70e9840b599c63e661c8ba, type: 3}
+--- !u!1001 &7329771700561012304
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7329771700089153465, guid: f416a1cc28a3e7e4eb07182e36dcb0df,
+        type: 3}
+      propertyPath: m_Name
+      value: Particle Factory
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329771700089153466, guid: f416a1cc28a3e7e4eb07182e36dcb0df,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 28.550539
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329771700089153466, guid: f416a1cc28a3e7e4eb07182e36dcb0df,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -18.253723
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329771700089153466, guid: f416a1cc28a3e7e4eb07182e36dcb0df,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 35.225277
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329771700089153466, guid: f416a1cc28a3e7e4eb07182e36dcb0df,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329771700089153466, guid: f416a1cc28a3e7e4eb07182e36dcb0df,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329771700089153466, guid: f416a1cc28a3e7e4eb07182e36dcb0df,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329771700089153466, guid: f416a1cc28a3e7e4eb07182e36dcb0df,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329771700089153466, guid: f416a1cc28a3e7e4eb07182e36dcb0df,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329771700089153466, guid: f416a1cc28a3e7e4eb07182e36dcb0df,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329771700089153466, guid: f416a1cc28a3e7e4eb07182e36dcb0df,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329771700089153466, guid: f416a1cc28a3e7e4eb07182e36dcb0df,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f416a1cc28a3e7e4eb07182e36dcb0df, type: 3}
 --- !u!1001 &7368659472136379020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4883,7 +4952,7 @@ PrefabInstance:
     - target: {fileID: 7368659471463735183, guid: 7b82c48bfe21603459d30c6138f021f6,
         type: 3}
       propertyPath: m_Name
-      value: Tower Spawner
+      value: Tower Factory
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b82c48bfe21603459d30c6138f021f6, type: 3}

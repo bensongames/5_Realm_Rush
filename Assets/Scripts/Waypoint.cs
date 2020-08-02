@@ -14,12 +14,12 @@ public class Waypoint : MonoBehaviour
 
     private const int _gridSize = 10;
     
-    private TowerSpawner _towerSpawner;
+    private TowerFactory _towerSpawner;
 
 
     private void Start()
     {
-        _towerSpawner = FindObjectOfType<TowerSpawner>();
+        _towerSpawner = FindObjectOfType<TowerFactory>();
     }
 
     private void Update()

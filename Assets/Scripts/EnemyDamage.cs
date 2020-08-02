@@ -2,12 +2,12 @@
 
 public class EnemyDamage : MonoBehaviour
 {
-    [SerializeField] ParticleSystem _destroyedPrefab;
-    [SerializeField] ParticleSystem _hitPrefab;
     [SerializeField] private int _hitPoints = 10;
+    private ParticleFactory _particleFactory;
 
     private void Start()
     {
+        _particleFactory = FindObjectOfType<ParticleFactory>();
         AddNonTriggerBoxCollider();
     }
 
@@ -31,17 +31,13 @@ public class EnemyDamage : MonoBehaviour
         } 
         else
         {
-            var hitParticles = Instantiate(_hitPrefab, transform.position, Quaternion.identity, transform);
-            var destroyDelay = hitParticles.main.duration;
-            Destroy(hitParticles.gameObject, destroyDelay);
+            _particleFactory.CreateHitParticles(transform.position, transform);
         }
     }
 
     private void Explode()
     {
-        var destroyedParticles = Instantiate(_destroyedPrefab, transform.position, Quaternion.identity);
-        var destroyDelay = destroyedParticles.main.duration;
+        _particleFactory.CreateExplosionParticles(transform.position);
         Destroy(gameObject);
-        Destroy(destroyedParticles.gameObject, destroyDelay);
     }
 }
