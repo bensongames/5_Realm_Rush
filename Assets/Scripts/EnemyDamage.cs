@@ -2,7 +2,8 @@
 
 public class EnemyDamage : MonoBehaviour
 {
-    [SerializeField] GameObject _explosionPrefab;
+    [SerializeField] GameObject _destroyedPrefab;
+    [SerializeField] GameObject _hitPrefab;
     [SerializeField] private int _hitPoints = 10;
 
     private void Start()
@@ -27,12 +28,16 @@ public class EnemyDamage : MonoBehaviour
         if (_hitPoints <= 0)
         {
             Explode();
+        } 
+        else
+        {
+            Instantiate(_hitPrefab, transform.position, Quaternion.identity, transform);
         }
     }
 
     private void Explode()
     {
-        Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+        Instantiate(_destroyedPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
