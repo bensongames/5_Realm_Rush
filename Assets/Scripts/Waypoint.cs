@@ -10,9 +10,10 @@ public class Waypoint : MonoBehaviour
     public bool IsPathway = false;
     public bool IsExplored = false;
     public Waypoint ExploredFrom;
+    public bool ContainsTower = false;
 
     private const int _gridSize = 10;
-    private bool _containsTower = false;
+    
     private TowerSpawner _towerSpawner;
 
 
@@ -64,7 +65,7 @@ public class Waypoint : MonoBehaviour
 
     private void PlaceTowerRequest()
     {
-        if (IsPathway || _containsTower)
+        if (IsPathway || ContainsTower)
         {
             print("Cannot place here");
         }
@@ -78,7 +79,7 @@ public class Waypoint : MonoBehaviour
     {        
         if (_towerSpawner != null)
         {
-            _containsTower = _towerSpawner.PlaceTower(transform.position);
+            _towerSpawner.PlaceTower(this);
         }
     }
 

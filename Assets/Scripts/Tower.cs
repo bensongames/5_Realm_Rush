@@ -8,6 +8,7 @@ public class Tower : MonoBehaviour
     [SerializeField] private ParticleSystem _bullets;    
     [SerializeField] private float _range = 30f;
 
+    public Waypoint BaseWaypoint;
     private Transform _target;
 
     private void Update()

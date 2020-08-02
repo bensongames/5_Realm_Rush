@@ -6,34 +6,40 @@ using UnityEngine.UIElements;
 public class TowerSpawner : MonoBehaviour
 {
 
-    [SerializeField] private Transform _towerPrefab;
+    [SerializeField] private Tower _towerPrefab;
     [SerializeField] [Range(1, 10)] private int _towerLimit = 5;
 
-    private int _towerCount = 0;
+    private readonly Queue<Tower> _towerQueue = new Queue<Tower>();
 
-    public bool PlaceTower(Vector3 placePosition)
+    public void PlaceTower(Waypoint waypoint)
     {
-        if (_towerCount < _towerLimit)
+        if (_towerQueue.Count < _towerLimit)
         {
-            CreateNewTower(placePosition);
-            return true;
+            CreateNewTower(waypoint);
         }
         else
         {
-            MoveExistingTower(placePosition);
-            return false;
+            MoveOldestTower(waypoint);
         }
 
     }
 
-    private void CreateNewTower(Vector3 placePosition)
-    {
-        _towerCount += 1;
-        Instantiate(_towerPrefab, placePosition, Quaternion.identity, transform);
+    private void CreateNewTower(Waypoint waypoint)
+    {        
+        Tower newTower = Instantiate(_towerPrefab, waypoint.transform.position, Quaternion.identity, transform);
+        waypoint.ContainsTower = true;
+        newTower.BaseWaypoint = waypoint;
+        _towerQueue.Enqueue(newTower);
     }
 
-    private static void MoveExistingTower(Vector3 placePosition)
+    private void MoveOldestTower(Waypoint waypoint)
     {
-        print("Tower placement limit reached");
+        var oldestTower = _towerQueue.Dequeue();
+        oldestTower.BaseWaypoint.ContainsTower = false;
+        waypoint.ContainsTower = true;
+        oldestTower.BaseWaypoint = waypoint;
+        oldestTower.transform.position = waypoint.transform.position;
+        _towerQueue.Enqueue(oldestTower);
     }
+
 }
