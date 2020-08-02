@@ -79,14 +79,12 @@ public class Tower : MonoBehaviour
         }
     }
 
-
     private bool TargetInRange()
     {
         if (_target == null) return false;
         var distanceToTarget = GetDistance(_target, transform);
         return distanceToTarget <= _range;
     }
-
 
     private float GetDistance(Transform start, Transform end)
     {
