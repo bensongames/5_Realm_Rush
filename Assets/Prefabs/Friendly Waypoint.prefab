@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _exploredColor: {r: 0.38361543, g: 0.17412782, b: 0.8584906, a: 0}
+  IsPathway: 1
   IsExplored: 0
   ExploredFrom: {fileID: 0}
 --- !u!65 &7485373134082767272

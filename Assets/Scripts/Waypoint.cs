@@ -22,7 +22,17 @@ public class Waypoint : MonoBehaviour
 
     private void OnMouseOver()
     {
-        print(gameObject.name);
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (IsPathway)
+            {
+                print("Cannot place here");
+            }
+            else
+            { 
+                print(gameObject.name); 
+            }            
+        }        
     }
 
     public int GetGridSize()
