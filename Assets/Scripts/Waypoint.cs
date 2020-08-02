@@ -5,12 +5,14 @@ public class Waypoint : MonoBehaviour
 {
 
     [SerializeField] private Color _exploredColor;
+    [SerializeField] private Transform _towerPrefab;
 
     public bool IsPathway = false;
-    public bool IsExplored;
+    public bool IsExplored = false;
     public Waypoint ExploredFrom;
 
     private const int _gridSize = 10;
+    private bool _containsTower = false;
 
     private void Update()
     {
@@ -24,13 +26,14 @@ public class Waypoint : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (IsPathway)
+            if (IsPathway || _containsTower)
             {
                 print("Cannot place here");
             }
             else
-            { 
-                print(gameObject.name); 
+            {
+                _containsTower = true;
+                Instantiate(_towerPrefab, transform.position, Quaternion.identity, transform);
             }            
         }        
     }

@@ -60,6 +60,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _exploredColor: {r: 0, g: 0, b: 0, a: 0}
+  _towerPrefab: {fileID: 8391744952916360170, guid: bdceaa83beb07024c9a8e3d3220fb4ef,
+    type: 3}
   IsPathway: 0
   IsExplored: 0
   ExploredFrom: {fileID: 0}
