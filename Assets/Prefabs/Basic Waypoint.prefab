@@ -576,7 +576,7 @@ GameObject:
   - component: {fileID: 1994394195}
   - component: {fileID: 5559400953377896343}
   m_Layer: 0
-  m_Name: Quad Cube
+  m_Name: Basic Waypoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -614,8 +614,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065aba0be0095b244b5ea8e367eb8e38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridSize: 10
-  _allowVertical: 0
 --- !u!114 &5559400953377896343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,6 +626,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a157f35b392c5d5409bc00f46782c278, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _exploredColor: {r: 0, g: 0, b: 0, a: 0}
+  IsExplored: 0
+  ExploredFrom: {fileID: 0}
 --- !u!1 &8993593110522083938
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,15 +6,11 @@ public class Waypoint : MonoBehaviour
 
     [SerializeField] private Color _exploredColor;
 
+    public bool IsPathway = false;
     public bool IsExplored;
     public Waypoint ExploredFrom;
 
     private const int _gridSize = 10;
-
-    public int GetGridSize()
-    {
-        return _gridSize;
-    }
 
     private void Update()
     {
@@ -22,6 +18,16 @@ public class Waypoint : MonoBehaviour
         {
             SetTopColor(_exploredColor);
         }
+    }
+
+    private void OnMouseOver()
+    {
+        print(gameObject.name);
+    }
+
+    public int GetGridSize()
+    {
+        return _gridSize;
     }
 
     public Vector2Int GetGridPosition()

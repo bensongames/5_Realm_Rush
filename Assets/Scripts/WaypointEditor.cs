@@ -4,7 +4,6 @@ using UnityEngine.SocialPlatforms;
 [ExecuteInEditMode]
 [SelectionBase]
 [DisallowMultipleComponent]
-[RequireComponent(typeof(TextMesh))]
 [RequireComponent(typeof(Waypoint))]
 public class WaypointEditor : MonoBehaviour
 {
@@ -33,6 +32,7 @@ public class WaypointEditor : MonoBehaviour
 
     private void UpdateLabel()
     {
+        if (_textMesh == null) return;
         var gridPosition = _waypoint.GetGridPosition();
         var labelText = $"{gridPosition.x},{gridPosition.y}";
         if (_textMesh != null) _textMesh.text = labelText;

@@ -54,7 +54,7 @@ public class Pathfinder : MonoBehaviour
             {
                 Debug.LogWarning($"Overlapping cube at {gridPosition}");
             }
-            else
+            else if (waypoint.IsPathway)
             {
                 _grid.Add(gridPosition, waypoint);
             }
