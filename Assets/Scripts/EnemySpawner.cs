@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private EnemyMovement _enemyPrefab;
     [SerializeField] private bool _spawnEnemies = true;
-    [Tooltip("Delay in seconds")] [SerializeField] private float _spawnDelay = 1f;
+    [Tooltip("Delay in seconds")] [Range(0.1f, 120f)] [SerializeField] private float _spawnDelay = 3f;
 
     private void Start()
     {

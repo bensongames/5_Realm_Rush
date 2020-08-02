@@ -1,17 +1,40 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
 
     [SerializeField] private Transform _gun;
-    [SerializeField] private ParticleSystem _bullets;
-    [SerializeField] private Transform _target;
+    [SerializeField] private ParticleSystem _bullets;    
     [SerializeField] private float _range = 30f;
+
+    private Transform _target;
 
     private void Update()
     {
-        FollowTarget();
-        FireAtTargetWhenInRange();
+        LocateClosestTarget();
+        if (_target != null)
+        {
+            FollowTarget();
+            FireAtTargetWhenInRange();
+        }
+    }
+
+    private void LocateClosestTarget()
+    {
+        var enemies = FindObjectsOfType<EnemyDamage>();        
+        if (enemies.Length == 0) return;
+        var closestEnemy = enemies[0].transform;
+        foreach (var enemy in enemies)
+        {
+            var distanceToClosestEnemy = GetDistance(closestEnemy, transform);
+            var distanceToCurrentEnemy = GetDistance(enemy.transform, transform);
+            if (distanceToCurrentEnemy < distanceToClosestEnemy)
+            {
+                closestEnemy = enemy.transform;
+            }
+        }
+        _target = closestEnemy;
     }
 
     private void FollowTarget()
@@ -41,7 +64,14 @@ public class Tower : MonoBehaviour
     private bool TargetInRange()
     {
         if (_target == null) return false;
-        var distanceToTarget = Vector3.Distance(_target.position, transform.position);
+        var distanceToTarget = GetDistance(_target, transform);
         return distanceToTarget <= _range;
     }
+
+
+    private float GetDistance(Transform start, Transform end)
+    {
+        return Vector3.Distance(start.position, end.position);
+    }
+
 }
