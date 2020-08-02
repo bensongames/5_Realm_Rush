@@ -5,7 +5,7 @@ public class Waypoint : MonoBehaviour
 {
 
     [SerializeField] private Color _exploredColor;
-    [SerializeField] private Transform _towerPrefab;
+    
 
     public bool IsPathway = false;
     public bool IsExplored = false;
@@ -13,6 +13,13 @@ public class Waypoint : MonoBehaviour
 
     private const int _gridSize = 10;
     private bool _containsTower = false;
+    private TowerSpawner _towerSpawner;
+
+
+    private void Start()
+    {
+        _towerSpawner = FindObjectOfType<TowerSpawner>();
+    }
 
     private void Update()
     {
@@ -26,15 +33,7 @@ public class Waypoint : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (IsPathway || _containsTower)
-            {
-                print("Cannot place here");
-            }
-            else
-            {
-                _containsTower = true;
-                Instantiate(_towerPrefab, transform.position, Quaternion.identity, transform);
-            }            
+            PlaceTowerRequest();        
         }        
     }
 
@@ -60,6 +59,26 @@ public class Waypoint : MonoBehaviour
             {
                 topMeshRenderer.material.color = color;
             }
+        }
+    }
+
+    private void PlaceTowerRequest()
+    {
+        if (IsPathway || _containsTower)
+        {
+            print("Cannot place here");
+        }
+        else
+        {
+            PlaceTower();
+        }
+    }
+
+    private void PlaceTower()
+    {        
+        if (_towerSpawner != null)
+        {
+            _containsTower = _towerSpawner.PlaceTower(transform.position);
         }
     }
 
