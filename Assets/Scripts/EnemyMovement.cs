@@ -32,8 +32,6 @@ public class EnemyMovement : MonoBehaviour
         AttackPlayerBase();
     }
 
-    [SerializeField] ParticleSystem _playerBaseReachedPrefab;
-
     private void AttackPlayerBase()
     {
         Destroy(gameObject);
