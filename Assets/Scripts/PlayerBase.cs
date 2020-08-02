@@ -4,14 +4,11 @@ using UnityEngine.UI;
 public class PlayerBase : MonoBehaviour
 {
     [SerializeField] private AudioClip _damageSFX;
-    [Range(1,100)][SerializeField] private int _hitPoints = 10;
-    [SerializeField] private Text _hitPointText;
     private AudioSource _audioSource;
 
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        DisplayHitpoints();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,8 +19,7 @@ public class PlayerBase : MonoBehaviour
     private void TakeDamage()
     {
         PlayDamageSound();
-        _hitPoints -= 1;
-        DisplayHitpoints();
+        GameEventManager.DecrementHealth(1);
     }
 
     private void PlayDamageSound()
@@ -34,8 +30,4 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
-    private void DisplayHitpoints()
-    {
-        _hitPointText.text = $"base hitpoints {_hitPoints}";
-    }
 }

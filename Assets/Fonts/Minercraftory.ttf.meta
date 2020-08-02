@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: df25e7a473db891408259e6637edac87
+guid: 5744cf9db07d5154ea5d6b1c62ef9d1b
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: spaceman
+  fontName: Minercraftory
   fontNames:
-  - spaceman
+  - Minercraftory
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

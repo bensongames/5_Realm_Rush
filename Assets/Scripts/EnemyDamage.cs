@@ -6,6 +6,16 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField] private int _hitPoints = 10;
     private ParticleFactory _particleFactory;
 
+    private void OnEnable()
+    {
+        GameEventManager.OnGameOver += Explode;
+    }
+
+    private void OnDisable()
+    {
+        GameEventManager.OnGameOver -= Explode;
+    }
+
     private void Start()
     {
         _particleFactory = FindObjectOfType<ParticleFactory>();
