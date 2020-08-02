@@ -5,11 +5,18 @@ public class Tower : MonoBehaviour
 {
 
     [SerializeField] private Transform _gun;
-    [SerializeField] private ParticleSystem _bullets;    
+    [SerializeField] private ParticleSystem _bullets;
+    [SerializeField] private AudioClip _shootSFX;
     [SerializeField] private float _range = 30f;
 
     public Waypoint BaseWaypoint;
     private Transform _target;
+    private AudioSource _audioSource;
+
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -49,6 +56,7 @@ public class Tower : MonoBehaviour
         if (TargetInRange())
         {
             FireWeapon(true);
+            PlayShootSound();
         }
         else
         {
@@ -58,9 +66,19 @@ public class Tower : MonoBehaviour
 
     private void FireWeapon(bool fire)
     {
-            var bulletEmission = _bullets.emission;
-            bulletEmission.enabled = fire;
+        var bulletEmission = _bullets.emission;
+        bulletEmission.enabled = fire;        
     }
+
+    private void PlayShootSound()
+    {
+        if (_shootSFX != null)
+        {
+            _audioSource.Stop();
+            _audioSource.PlayOneShot(_shootSFX);
+        }
+    }
+
 
     private bool TargetInRange()
     {
