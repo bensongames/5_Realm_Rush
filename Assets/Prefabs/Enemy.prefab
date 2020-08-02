@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6474b5671586c0a4d8547e68daf77f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _movementSpeed: 2
 --- !u!114 &114078703179129330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,10 +75,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10108cdf75cadb4ca443ccff751eb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _destroyedPrefab: {fileID: 1929956291960174, guid: 1a51bfda454239a41afb7dee687c6ac0,
+  _destroyedPrefab: {fileID: 198537984209914932, guid: 1a51bfda454239a41afb7dee687c6ac0,
     type: 3}
-  _hitPrefab: {fileID: 1505610324796538, guid: dcf9cd10c07cf0c49863969befadb243, type: 3}
-  _hitPoints: 10
+  _hitPrefab: {fileID: 198801791596541968, guid: dcf9cd10c07cf0c49863969befadb243,
+    type: 3}
+  _hitPoints: 5
 --- !u!1 &1646541640735296
 GameObject:
   m_ObjectHideFlags: 0

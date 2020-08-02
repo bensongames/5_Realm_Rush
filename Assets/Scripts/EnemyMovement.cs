@@ -5,6 +5,8 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class EnemyMovement : MonoBehaviour
 {
+    [SerializeField] private float _movementSpeed = 2f;
+
     private void Start()
     {
         var pathFinder = FindObjectOfType<Pathfinder>();
@@ -20,7 +22,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 transform.position = waypoint.transform.position;
             }
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(_movementSpeed);
         }
     }
 }

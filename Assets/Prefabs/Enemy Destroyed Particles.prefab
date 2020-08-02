@@ -19028,7 +19028,6 @@ GameObject:
   - component: {fileID: 198537984209914932}
   - component: {fileID: 199362987947312204}
   - component: {fileID: 5694386251182195512}
-  - component: {fileID: 923383143614057411}
   m_Layer: 0
   m_Name: Enemy Destroyed Particles
   m_TagString: Untagged
@@ -23872,16 +23871,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &923383143614057411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1929956291960174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b966f92cc487f154b906b7f5a1a31de9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timeToDestruct: 5

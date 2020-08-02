@@ -2,8 +2,8 @@
 
 public class EnemyDamage : MonoBehaviour
 {
-    [SerializeField] GameObject _destroyedPrefab;
-    [SerializeField] GameObject _hitPrefab;
+    [SerializeField] ParticleSystem _destroyedPrefab;
+    [SerializeField] ParticleSystem _hitPrefab;
     [SerializeField] private int _hitPoints = 10;
 
     private void Start()
@@ -31,13 +31,16 @@ public class EnemyDamage : MonoBehaviour
         } 
         else
         {
-            Instantiate(_hitPrefab, transform.position, Quaternion.identity, transform);
+            var hitParticles = Instantiate(_hitPrefab, transform.position, Quaternion.identity, transform);
+            var destroyDelay = hitParticles.main.duration;
+            Destroy(hitParticles.gameObject, destroyDelay);
         }
     }
 
     private void Explode()
     {
-        Instantiate(_destroyedPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        var destroyedParticles = Instantiate(_destroyedPrefab, transform.position, Quaternion.identity, transform);
+        var destroyDelay = destroyedParticles.main.duration;
+        Destroy(gameObject, destroyDelay);
     }
 }
