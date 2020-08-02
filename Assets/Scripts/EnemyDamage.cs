@@ -39,8 +39,9 @@ public class EnemyDamage : MonoBehaviour
 
     private void Explode()
     {
-        var destroyedParticles = Instantiate(_destroyedPrefab, transform.position, Quaternion.identity, transform);
+        var destroyedParticles = Instantiate(_destroyedPrefab, transform.position, Quaternion.identity);
         var destroyDelay = destroyedParticles.main.duration;
-        Destroy(gameObject, destroyDelay);
+        Destroy(gameObject);
+        Destroy(destroyedParticles.gameObject, destroyDelay);
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class EnemyMovement : MonoBehaviour
 {
+    [SerializeField] ParticleSystem _playerBaseReachedPrefab;
     [SerializeField] private float _movementSpeed = 2f;
 
     private void Start()
@@ -24,5 +25,14 @@ public class EnemyMovement : MonoBehaviour
             }
             yield return new WaitForSeconds(_movementSpeed);
         }
+        ReachedPlayerBase();
+    }
+
+    private void ReachedPlayerBase()
+    {
+        var playerBaseReachedParticles = Instantiate(_playerBaseReachedPrefab, transform.position, Quaternion.identity);
+        var destroyDelay = playerBaseReachedParticles.main.duration;
+        Destroy(gameObject);
+        Destroy(playerBaseReachedParticles.gameObject, destroyDelay);
     }
 }
